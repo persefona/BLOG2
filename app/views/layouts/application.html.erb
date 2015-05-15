@@ -8,7 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div id="sidebar">
+	<!-- <div id="sidebar">
 		<div id="logo">
 			<%= link_to root_path do %>
 			<%= image_tag "picture.jpg" %>
@@ -31,12 +31,15 @@
 	    <% if !user_signed_in? %>
 			<p class="sign_in">Admin Login</p>
 		<% end %>
-	</div>
+	</div> -->
 
-	<div id="main_content">
+
+	<!--<div id="main_content">
 		<div id="header">
 			<% if current_page?(root_path) %>
 				<p>All Posts</p>
+				<li><%=link_to "firstblog", root_path %></li>
+				<li><%=link_to "About", about_path %></li>
 			<% elsif current_page?(about_path) %>
 				<p>About></p>
 			<% else %>
@@ -53,12 +56,30 @@
 		    	<button class="button"><%= link_to 'Rejestracja',
 		    		new_user_registration_path %>
 		    <% end %>
-		</div>
+		</div> -->
+
+
+		 <% flash.each do |key, value| %>
+		      <div class="alert alert-<%= key %> alert-dismissable">
+		        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		        <%= value %>
+		      </div>
+  		<% end %>
+
+		  <header class="navbar navbar-fixed-top navbar-inverse">
+			  <div class="container">
+			   <%= render 'layouts/menu' %>
+			  </div>
+		  </header>
 
 		<% flash.each do |name,msg| %> <!-- podświetlanie linków -->
 			<%= content_tag(:div, msg, class: "alert
 				") %>
 				<% end %>
+
+			<div class="container">
+
+
 
 		<%= yield %>
     </div>
